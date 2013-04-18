@@ -8,6 +8,7 @@ html.no-js.wf-loading lang='en'
     == stylesheet_link_tag "site"
   body
     h1
+      = data.page.title
     == yield
     == javascript_include_tag "base"
     == javascript_include_tag "app"

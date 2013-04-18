@@ -1,0 +1,13 @@
+doctype html
+html.no-js.wf-loading lang='en'
+  head
+    meta charset="utf-8"
+    title
+      | Site name — 
+      = site.name
+    == stylesheet_link_tag "site"
+  body
+    h1
+    == yield
+    == javascript_include_tag "base"
+    == javascript_include_tag "app"

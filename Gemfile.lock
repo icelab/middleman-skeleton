@@ -13,16 +13,15 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    POpen4 (0.1.4)
-      Platform (>= 0.4.0)
-      open4
-    Platform (0.4.0)
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     better_errors (0.8.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     builder (3.2.0)
     chunky_png (1.2.8)
     coderay (1.0.9)
@@ -59,8 +58,6 @@ GEM
     haml (4.0.2)
       tilt
     hike (1.2.2)
-    htmlcompressor (0.0.5)
-      yui-compressor (~> 0.9.6)
     http_parser.rb (0.5.3)
     http_router (0.10.2)
       rack (>= 1.0.0)
@@ -81,10 +78,6 @@ GEM
       middleman-core (= 3.0.13)
       middleman-more (= 3.0.13)
       middleman-sprockets (~> 3.0.8)
-    middleman-blog (3.2.0)
-      maruku (~> 0.6.0)
-      middleman-core (~> 3.0)
-      tzinfo (~> 0.3.0)
     middleman-cloudfront (0.0.4)
       fog (~> 1.9.0)
       middleman-core (~> 3.0.0)
@@ -105,9 +98,6 @@ GEM
       middleman-core (~> 3.0.2)
       multi_json (~> 1.0)
       rack-livereload
-    middleman-minify-html (3.0.0)
-      htmlcompressor
-      middleman-core (~> 3.0.0)
     middleman-more (3.0.13)
       coffee-script (~> 2.2.0)
       coffee-script-source (~> 1.3.3)
@@ -127,16 +117,15 @@ GEM
       middleman-more (>= 3.0.11)
       sprockets (~> 2.1)
       sprockets-sass (~> 0.9.1)
-    middleman-syntax (1.1.1)
-      middleman-core (~> 3.0)
-      pygments.rb (~> 0.3)
     mime-types (1.22)
     multi_json (1.7.2)
+    neat (1.4.0)
+      bourbon (>= 2.1)
+      sass (>= 3.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.7)
     nokogiri (1.5.9)
-    open4 (1.3.0)
     padrino-core (0.10.7)
       activesupport (~> 3.2.0)
       http_router (~> 0.10.2)
@@ -147,11 +136,7 @@ GEM
       i18n (~> 0.6)
       padrino-core (= 0.10.7)
     parallel (0.6.4)
-    posix-spawn (0.3.6)
     progress (2.4.0)
-    pygments.rb (0.5.0)
-      posix-spawn (~> 0.3.6)
-      yajl-ruby (~> 1.1.0)
     rack (1.4.5)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
@@ -192,9 +177,6 @@ GEM
       multi_json (~> 1.3)
     url_mount (0.2.1)
       rack
-    yajl-ruby (1.1.0)
-    yui-compressor (0.9.6)
-      POpen4 (>= 0.1.4)
 
 PLATFORMS
   ruby
@@ -202,17 +184,15 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   better_errors
-  compass
+  bourbon
   middleman
-  middleman-blog
   middleman-cloudfront
-  middleman-imageoptim (~> 0.0.4)
+  middleman-imageoptim
   middleman-livereload
-  middleman-minify-html
   middleman-s3_redirect
   middleman-s3_sync!
-  middleman-syntax
   mime-types
+  neat
   rack
   rack-contrib
   rake

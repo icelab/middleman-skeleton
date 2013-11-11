@@ -15,9 +15,10 @@ set :css_dir,         'assets/stylesheets'
 set :js_dir,          'assets/javascripts'
 set :images_dir,      'assets/images'
 set :fonts_dir,       'assets/fonts'
+set :vendor_dir,      'assets/vendor'
 
-set :js_assets_paths, [js_dir]
-set :css_assets_paths,[css_dir]
+set :js_assets_paths, [js_dir, vendor_dir]
+set :css_assets_paths, [css_dir, vendor_dir]
 
 set :markdown_engine, :redcarpet
 set :markdown,        :fenced_code_blocks => true,

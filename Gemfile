@@ -9,9 +9,10 @@ gem "middleman-cloudfront"
 gem "middleman-imageoptim"
 
 # Assets
-gem "sass"
 gem "bourbon"
 gem "neat"
+gem "sass"
+gem "middleman-autoprefixer"
 
 # Formats
 gem "redcarpet"
@@ -19,7 +20,9 @@ gem "slim"
 
 # Misc
 gem "activesupport"
-gem 'better_errors'
+gem "better_errors"
+gem "binding_of_caller"
+gem "dotenv"
 gem "mime-types"
 gem "rack"
 gem "rack-contrib"

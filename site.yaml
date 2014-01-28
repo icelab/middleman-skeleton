@@ -1,5 +1,6 @@
 timezone: "Melbourne"
 name: "Website name"
 url: ""
+app_domain: ""
 cdn_url: ""
 typekit_id: ""

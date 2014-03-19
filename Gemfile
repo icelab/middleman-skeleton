@@ -17,6 +17,7 @@ gem "middleman-autoprefixer"
 # Formats
 gem "redcarpet"
 gem "slim"
+gem 'tilt-jbuilder'
 
 # Misc
 gem "activesupport"

@@ -77,6 +77,9 @@ GEM
       progress (~> 3.0.0)
     image_size (1.1.5)
     in_threads (1.2.0)
+    jbuilder (2.0.4)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.2.0)
     json (1.8.1)
     kramdown (1.3.1)
     listen (1.3.1)
@@ -174,6 +177,9 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
+    tilt-jbuilder (0.5.3)
+      jbuilder
+      tilt (<= 1.4.1)
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
     uglifier (2.4.0)
@@ -204,4 +210,5 @@ DEPENDENCIES
   redcarpet
   sass
   slim
+  tilt-jbuilder
   tzinfo

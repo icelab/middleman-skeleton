@@ -43,4 +43,10 @@ to `/spec/` and Jasmine will automatically run the tests using livereload at
 <http://localhost:4567/jasmine/>.
 
 Spec files are in the sprockets load path, so you can simply `//= require foo`
-any specific files you need to test.
+any specific files you need to test. At the moment specs have to be written
+in JavaScript.
+
+To remove this support:
+
+1. Remove "middleman-jasmine" from the `Gemfile`.
+2. Remove `activate :jasmine` from `config.rb`.

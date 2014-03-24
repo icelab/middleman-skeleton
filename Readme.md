@@ -1,3 +1,7 @@
+# Middleman Skeleton
+
+A starter skeleton for [Middleman](http://middlemanapp.com) projects.
+
 ## Running the app
 
 Setup:

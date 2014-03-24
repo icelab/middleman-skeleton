@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+source "https://rails-assets.org"
+
+# Skeleton defaults ------------------------------------------------------------
 
 # Middleman
 gem "middleman"
@@ -7,13 +10,16 @@ gem "middleman-s3_sync", :git => 'git://github.com/plasticine/middleman-s3_sync.
 gem "middleman-s3_redirect"
 gem "middleman-cloudfront"
 gem "middleman-imageoptim"
-gem "middleman-react"
 
-# Assets
+# CSS
 gem "bourbon"
 gem "neat"
 gem "sass"
 gem "middleman-autoprefixer"
+
+# JavaScript
+gem "middleman-react"
+gem "middleman-jasmine"
 
 # Formats
 gem "redcarpet"
@@ -30,3 +36,6 @@ gem "rack"
 gem "rack-contrib"
 gem "tzinfo"
 gem "rake"
+
+# Project specific -------------------------------------------------------------
+

@@ -10,14 +10,6 @@ Running locally:
 
 Will spin up the server at <http://localhost:4567>
 
-## Assets
-
-Install Bourbon and Neat:
-
-    cd ./source/assets/vendor
-    bourbon install
-    neat install
-
 ## Testing
 
 Out of the box the skeleton is set up for testing your JavaScript using

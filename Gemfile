@@ -12,8 +12,6 @@ gem "middleman-cloudfront"
 gem "middleman-imageoptim"
 
 # CSS
-gem "bourbon"
-gem "neat"
 gem "sass"
 gem "middleman-autoprefixer"
 

@@ -14,7 +14,21 @@ Running locally:
 
 Will spin up the server at <http://localhost:4567>
 
-## Testing
+## Features
+
+### React
+
+Support for pre-processing React's JSX templates in `.js.jsx.coffee` and
+`.js.jsx` files is included by default. Remember sure to include the
+`###* @jsx React.DOM ###` (CoffeeScript) or  `/** @jsx React.DOM */` (JS)
+comments at the beginning of the files.
+
+To remove this support:
+
+1. Remove "middleman-react" from the `Gemfile`.
+2. Remove `activate :react` from `config.rb`.
+
+### Testing
 
 Out of the box the skeleton is set up for testing your JavaScript using
 [Jasmine](http://jasmine.github.io/), it uses the

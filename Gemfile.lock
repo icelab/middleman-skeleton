@@ -12,6 +12,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
@@ -24,10 +25,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (3.1.8)
-      sass (>= 3.2.0)
-      thor
     builder (3.2.2)
+    childprocess (0.5.1)
+      ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.2.9)
     coderay (1.1.0)
     coffee-script (2.2.0)
@@ -40,6 +40,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
     dotenv (0.9.0)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -77,6 +78,12 @@ GEM
       progress (~> 3.0.0)
     image_size (1.1.5)
     in_threads (1.2.0)
+    jasmine (1.3.2)
+      jasmine-core (~> 1.3.1)
+      rack (~> 1.0)
+      rspec (>= 1.3.1)
+      selenium-webdriver (>= 0.1.3)
+    jasmine-core (1.3.1)
     jbuilder (2.0.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -115,6 +122,9 @@ GEM
     middleman-imageoptim (0.1.4)
       image_optim (~> 0.9.1)
       middleman-core (>= 3.0)
+    middleman-jasmine (0.4.0)
+      jasmine (~> 1.3)
+      middleman-core
     middleman-livereload (3.1.1)
       em-websocket (>= 0.2.0)
       middleman-core (>= 3.0.2)
@@ -136,9 +146,6 @@ GEM
     mime-types (2.1)
     mini_portile (0.5.2)
     multi_json (1.8.4)
-    neat (1.5.0)
-      bourbon (>= 2.1)
-      sass (>= 3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -161,9 +168,23 @@ GEM
       ffi (>= 0.5.0)
     react-source (0.8.0)
     redcarpet (3.0.0)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.8)
+    rspec-expectations (2.14.5)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.6)
     ruby-hmac (0.4.0)
     ruby-progressbar (1.4.1)
+    rubyzip (1.1.2)
     sass (3.2.14)
+    selenium-webdriver (2.40.0)
+      childprocess (>= 0.5.0)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0.4)
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -190,6 +211,7 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    websocket (1.0.7)
 
 PLATFORMS
   ruby
@@ -198,18 +220,17 @@ DEPENDENCIES
   activesupport
   better_errors
   binding_of_caller
-  bourbon
   dotenv
   middleman
   middleman-autoprefixer
   middleman-cloudfront
   middleman-imageoptim
+  middleman-jasmine
   middleman-livereload
   middleman-react
   middleman-s3_redirect
   middleman-s3_sync!
   mime-types
-  neat
   rack
   rack-contrib
   rake

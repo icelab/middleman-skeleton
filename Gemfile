@@ -18,11 +18,12 @@ gem "middleman-autoprefixer"
 # JavaScript
 gem "middleman-react"
 gem "middleman-jasmine"
+gem "rails-assets-viewloader"
 
 # Formats
 gem "redcarpet"
 gem "slim"
-gem 'tilt-jbuilder'
+gem "tilt-jbuilder"
 
 # Misc
 gem "activesupport"

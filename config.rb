@@ -50,6 +50,10 @@ activate :autoprefixer, browsers: ['last 2 versions', 'ie 8', 'ie 9']
 # React
 activate :react
 
+# Jasmine testing through middleman-jasmine:
+# https://github.com/mrship/middleman-jasmine
+activate :jasmine
+
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 

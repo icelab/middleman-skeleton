@@ -47,6 +47,9 @@ activate :livereload, :host => Socket.gethostbyname(Socket.gethostname).first
 # Autoprefixer
 activate :autoprefixer, browsers: ['last 2 versions', 'ie 8', 'ie 9']
 
+# React
+activate :react
+
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 

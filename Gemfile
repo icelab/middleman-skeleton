@@ -7,6 +7,7 @@ gem "middleman-s3_sync", :git => 'git://github.com/plasticine/middleman-s3_sync.
 gem "middleman-s3_redirect"
 gem "middleman-cloudfront"
 gem "middleman-imageoptim"
+gem "middleman-react"
 
 # Assets
 gem "bourbon"

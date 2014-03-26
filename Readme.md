@@ -40,6 +40,16 @@ lookup, so most of the time you’ll be able to simply do something like
 specific rails-asset gem to check the exact location of the assets you want to
 include.
 
+If you want to include [our CSS pattern library](https://bitbucket.org/icelab/css-patterns),
+just run:
+
+    rake assets:fetch_patterns
+
+This will clone it into `./source/assets/stylesheets/patterns` and remove the
+`.git` directory from that repo (so you can commit them alongside the rest of
+your code). If you want to update to the latest you’ll need to delete the folder
+and run that task again.
+
 ### Templates
 
 Templates are set up to use [Slim](http://slim-lang.com/) by default. You can
@@ -63,7 +73,6 @@ markdown if you have general content files to deal with.
 You can make data available in your templates by adding YAML files to the
 `/data` directory. For example, any data in `/data/example.yml` will be
 available in templates under `data.example`.
-
 
 ### JSON
 

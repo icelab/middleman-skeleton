@@ -15,11 +15,17 @@ task :setup do
   system 'git init'
 end
 
-# For deploying to heroku
-# It’ll automatically pick up this task
 namespace :assets do
+  # For deploying to heroku
+  # It’ll automatically pick up this task
   task :precompile do
     sh "middleman build"
+  end
+
+  desc "Pull down latest CSS patterns"
+  task :fetch_patterns do
+    system 'git clone git@bitbucket.org:icelab/css-patterns.git ./source/assets/stylesheets/patterns'
+    system 'rm -rf ./source/assets/stylesheets/patterns/.git'
   end
 end
 

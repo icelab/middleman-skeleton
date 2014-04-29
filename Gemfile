@@ -31,10 +31,11 @@ gem "better_errors"
 gem "binding_of_caller"
 gem "dotenv"
 gem "mime-types"
+gem "puma"
 gem "rack"
 gem "rack-contrib"
-gem "tzinfo"
 gem "rake"
+gem "tzinfo"
 
 # Project specific -------------------------------------------------------------
 

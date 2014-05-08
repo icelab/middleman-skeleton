@@ -16,7 +16,7 @@ gem "sass"
 gem "middleman-autoprefixer"
 
 # JavaScript
-gem "middleman-react"
+gem "middleman-react", "~> 0.10.0"
 gem "middleman-jasmine"
 gem "rails-assets-viewloader"
 

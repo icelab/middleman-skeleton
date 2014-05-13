@@ -10,7 +10,7 @@ use BetterErrors::Middleware
 # Site-wide settings
 #
 
-set :site, OpenStruct.new(YAML::load_file(File.dirname(__FILE__) + "/site.yaml"))
+set :site, YAML::load_file(File.dirname(__FILE__) + "/site.yaml").to_hashugar
 Time.zone = site.timezeone
 
 set :partials_dir,    'partials'

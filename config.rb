@@ -1,10 +1,11 @@
-require 'dotenv'
 require 'socket'
 require 'better_errors'
 require 'slim'
 require 'lib/redcarpet_renderers'
-Dotenv.load
 use BetterErrors::Middleware
+
+# Uses .env in the root of the project
+activate :dotenv
 
 #
 # Site-wide settings

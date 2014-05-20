@@ -5,6 +5,7 @@ source "https://rails-assets.org"
 
 # Middleman
 gem "middleman"
+gem "middleman-dotenv"
 gem "middleman-livereload"
 gem "middleman-s3_sync", :git => 'git://github.com/plasticine/middleman-s3_sync.git'
 gem "middleman-s3_redirect"
@@ -29,7 +30,6 @@ gem "tilt-jbuilder"
 gem "activesupport"
 gem "better_errors"
 gem "binding_of_caller"
-gem "dotenv"
 gem "hashugar"
 gem "mime-types"
 gem "puma"

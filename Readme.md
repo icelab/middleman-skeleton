@@ -1,14 +1,12 @@
 # Middleman Skeleton
 
-A starter skeleton for [Middleman](http://middlemanapp.com) projects. It’s worth
-spending a little bit of time reading the
-[Middleman docs](http://middlemanapp.com/basics/getting-started/) to get a bit
-of an understand of what Middleman is supposed to do.
+A starter skeleton for [Middleman](http://middlemanapp.com) projects. It’s worth spending a little bit of time reading the [Middleman docs](http://middlemanapp.com/basics/getting-started/) to get a bit of an understanding of what Middleman is supposed to do.
 
 ## Running the app
 
 Setup:
 
+    cp .env{.example,}
     bundle install --binstubs
 
 Running locally:
@@ -18,6 +16,12 @@ Running locally:
 Will spin up the server at <http://localhost:4567>
 
 ## Features
+
+### Settings
+
+Public settings — settings that should be exposed to the public templates — are contained in `site.yaml`. This is exposed to all templates as `site`.
+
+Private settings — things like deployment passwords and the like — should be kept in `.env`. These should be available everywhere through the `ENV` variable.
 
 ### Assets
 

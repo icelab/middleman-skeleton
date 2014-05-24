@@ -2,12 +2,17 @@ doctype html
 html.no-js.wf-loading lang='en'
   head
     meta charset="utf-8"
+    / Inline JavaScript includes, they should _always_ come before CSS
+    = partial "inline_js"
     title
-      | Site name — 
+      = data.page.title
+      '  —
       = site.name
-    == stylesheet_link_tag "site"
+    = partial "breakpoints"
+    = partial "metadata"
+    = stylesheet_link_tag "site"
   body
     h1
       = data.page.title
-    == yield
-    == javascript_include_tag "site"
+    = yield
+    = javascript_include_tag "site", async: true

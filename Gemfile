@@ -5,12 +5,13 @@ source "https://rails-assets.org"
 
 # Middleman
 gem "middleman"
-gem "middleman-dotenv"
-gem "middleman-livereload"
-gem "middleman-s3_sync", :git => 'git://github.com/plasticine/middleman-s3_sync.git'
-gem "middleman-s3_redirect"
 gem "middleman-cloudfront"
+gem "middleman-dotenv"
 gem "middleman-imageoptim"
+gem "middleman-livereload"
+gem "middleman-ogp"
+gem "middleman-s3_redirect"
+gem "middleman-s3_sync"
 
 # CSS
 gem "sass"

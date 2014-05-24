@@ -4,16 +4,21 @@ require 'slim'
 require 'lib/redcarpet_renderers'
 use BetterErrors::Middleware
 
-# Uses .env in the root of the project
+# Settings ---------------------------------------------------------------------
+
+# Private settings
+# Pulled from the `.env` in the root directory. Exposed as `ENV["SETTING_NAME"]`
+# across all templates/asset environments
 activate :dotenv
 
-#
-# Site-wide settings
-#
-
+# Public site settings
+# Pulled from `site.yaml`. Exposed as `site.setting_name` in templates.
 set :site, YAML::load_file(File.dirname(__FILE__) + "/site.yaml").to_hashugar
 Time.zone = site.timezeone
 
+# Configuration ----------------------------------------------------------------
+
+# General configuration for Middleman and its sprockets environment
 set :partials_dir,    'partials'
 set :css_dir,         'assets/stylesheets'
 set :js_dir,          'assets/javascripts'
@@ -21,8 +26,10 @@ set :images_dir,      'assets/images'
 set :fonts_dir,       'assets/fonts'
 set :vendor_dir,      'assets/vendor'
 
-set :js_assets_paths, [js_dir, vendor_dir]
-set :css_assets_paths, [css_dir, vendor_dir]
+after_configuration do
+  sprockets.append_path "assets/vendor"
+end
+
 
 set :markdown_engine, :redcarpet
 set :markdown,        :fenced_code_blocks => true,
@@ -35,11 +42,9 @@ set :markdown,        :fenced_code_blocks => true,
                       :lax_spacing => true,
                       :with_toc_data => true
 
+# Activate various extensions --------------------------------------------------
 
-#
-# Activate!
-#
-# /files/index.html
+# Output everything as a `/directory/index.html` instead of individual files
 activate :directory_indexes
 
 # Make sure that livereload uses the host FQDN so we can use it across network
@@ -58,40 +63,50 @@ activate :jasmine
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
+# Open-graph protocol configuration
+activate :ogp do |ogp|
+  ogp.namespaces = {
+    fb: data.ogp.fb,
+    og: data.ogp.og
+  }
+end
 
-#
-# Page options, layouts, aliases and proxies
-#
-# Per-page layout changes:
-#
-# With no layout
-# page "/path/to/file.html", :layout => false
-#
-# With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
 
-# Proxy (fake) files
-# page "/this-page-has-no-template.html", :proxy => "/template-file.html" do
-#   @which_fake_page = "Rendering a fake page with a variable"
-# end
+# Page options -----------------------------------------------------------------
 
-# Page options, layouts, aliases and proxies
+# Example configuration options:
+# With no layout:
+#
+#   page "/path/to/file.html", :layout => false
+#
+# With alternative layout:
+#
+#   page "/path/to/file.html", :layout => :otherlayout
+#
+# A path which all have the same layout:
+#
+#   with_layout :admin do
+#     page "/admin/*"
+#   end
+
+# Proxy (fake) files:
+#   page "/this-page-has-no-template.html", :proxy => "/template-file.html" do
+#     @which_fake_page = "Rendering a fake page with a variable"
+#   end
+
 page "*", :layout => "layouts/base"
 page "*.json"
 
-#
-# Helpers
-#
-# Load helpers
+
+# Helpers ----------------------------------------------------------------------
+# Load helpers from `./lib`
 require "lib/typography_helpers"
 helpers TypographyHelpers
+require "lib/asset_helpers"
+helpers AssetHelpers
 
 # Methods defined in the helpers block are available in templates
+# Uncomment the below to add custom helpers
 # helpers do
 #   def some_helper
 #     "Helping"
@@ -99,7 +114,7 @@ helpers TypographyHelpers
 # end
 
 
-# Build-specific configuration
+# Build configuration ----------------------------------------------------------
 
 activate :cloudfront do |cloudfront|
   cloudfront.access_key_id     = ENV['AWS_ACCESS_KEY']
@@ -118,26 +133,6 @@ activate :s3_redirect do |s3_redirect|
 end
 
 configure :build do
-  # For example, change the Compass output style for deployment
-  # activate :minify_css
-
-  # Minify Javascript on build
-  # activate :minify_javascript
-
-  # Enable cache buster
-  # activate :cache_buster
-
-  # Use relative URLs
-  # activate :relative_assets
-
-  # Compress PNGs after build
-  # First: gem install middleman-smusher
-  # require "middleman-smusher"
-  # activate :smusher
-
-  # Or use a different image path
-  # set :http_path, "/Content/images/"
-
   activate :gzip
   activate :minify_html
   activate :minify_css

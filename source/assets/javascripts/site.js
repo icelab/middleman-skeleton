@@ -11,3 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //
+
+domready(function() {
+  console.log("domready");
+});

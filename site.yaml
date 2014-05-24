@@ -3,5 +3,7 @@ name: "Website name"
 url: ""
 app_domain: ""
 cdn_url: ""
-typekit_id: ""
 breakpoints:
+  -
+    name: "phone"
+    query: "(max-width: 480px)"

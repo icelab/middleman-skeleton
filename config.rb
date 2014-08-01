@@ -67,7 +67,8 @@ activate :jasmine
 activate :ogp do |ogp|
   ogp.namespaces = {
     fb: data.ogp.fb,
-    og: data.ogp.og
+    og: data.ogp.og,
+    twitter: data.ogp.twitter
   }
 end
 

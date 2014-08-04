@@ -15,6 +15,3 @@
 
 # Ignore the sprockets cache
 /.cache
-
-# Ignore binstubs
-/bin

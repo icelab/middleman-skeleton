@@ -67,7 +67,8 @@ activate :jasmine
 activate :ogp do |ogp|
   ogp.namespaces = {
     fb: data.ogp.fb,
-    og: data.ogp.og
+    og: data.ogp.og,
+    twitter: data.ogp.twitter
   }
 end
 
@@ -142,7 +143,7 @@ configure :build do
   activate :cache_buster
   activate :directory_indexes
 
-  activate :image_optim do |image_optim|
+  activate :imageoptim do |image_optim|
     image_optim.image_extensions = ['*.png', '*.jpg', '*.gif']
   end
 

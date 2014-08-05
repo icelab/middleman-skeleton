@@ -7,11 +7,11 @@ A starter skeleton for [Middleman](http://middlemanapp.com) projects. It’s wor
 Setup:
 
     cp .env{.example,}
-    bundle install --binstubs
+    bundle install
 
 Running locally:
 
-    bundle exec rake watch
+    rake watch
 
 Will spin up the server at <http://localhost:4567>
 

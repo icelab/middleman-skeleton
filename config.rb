@@ -135,13 +135,14 @@ end
 
 configure :build do
   activate :gzip
-  activate :minify_html
   activate :minify_css
   activate :minify_javascript
-  activate :relative_assets
   activate :asset_host
-  activate :cache_buster
+  activate :asset_hash
   activate :directory_indexes
+
+  # Relative URLs ../etc
+  # activate :relative_assets
 
   activate :imageoptim do |image_optim|
     image_optim.image_extensions = ['*.png', '*.jpg', '*.gif']
@@ -152,14 +153,13 @@ configure :build do
   #   s3_sync.region                = ENV['S3_REGION']
   #   s3_sync.aws_access_key_id     = ENV['AWS_ACCESS_KEY']
   #   s3_sync.aws_secret_access_key = ENV['AWS_SECRET_KEY']
-  #   s3_sync.exclude               = [/\.gz\z/i]
   #   s3_sync.prefer_gzip           = true
   #   s3_sync.delete                = true
   #   s3_sync.after_build           = true
   # end
 
-  # set_default_headers cache_control: {max_age: 31449600, public: true}
-  # set_headers 'text/html', cache_control: {max_age: 7200, must_revalidate: true}, content_encoding: 'gzip'
-  # set_headers 'text/css', cache_control: {max_age: 31449600, public: true}, content_encoding: 'gzip'
-  # set_headers 'application/javascript', cache_control: {max_age: 31449600, public: true}, content_encoding: 'gzip'
+  # default_caching_policy max_age: 31449600, public: true
+  # caching_policy 'text/html', max_age: 7200, must_revalidate: true
+  # caching_policy 'text/css', max_age: 31449600, public: true
+  # caching_policy 'application/javascript', max_age: 31449600, public: true
 end

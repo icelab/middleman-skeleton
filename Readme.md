@@ -114,3 +114,14 @@ To remove this support:
 
 1. Remove "middleman-jasmine" from the `Gemfile`.
 2. Remove `activate :jasmine` from `config.rb`.
+
+
+## Deployment
+
+The default configuration means you can `git push` to deploy to Heroku, though this should only be used for staging purposes. Each push will rebuild the entire site and serve it statically from Heroku.
+
+Our preferred approach for deployment is to push to S3 and then CloudFront. There’s a build task set up to support this, you’ll just need to make sure the credentials in you `.env` are set up and then you can:
+
+        TARGET=production rake build
+
+Modifications to the `production` task can be made in the conditional block at the end of the `./config.rb`.

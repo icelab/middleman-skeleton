@@ -122,7 +122,7 @@ activate :cloudfront do |cloudfront|
   cloudfront.secret_access_key = ENV['AWS_SECRET_KEY']
   cloudfront.distribution_id   = ENV['CLOUDFRONT_DIST_ID']
   cloudfront.filter            = /.*[^\.gz]$/i
-  cloudfront.after_build       = false
+  cloudfront.after_build       = (ENV["TARGET"] == "production")
 end
 
 activate :s3_redirect do |s3_redirect|
@@ -134,12 +134,11 @@ activate :s3_redirect do |s3_redirect|
 end
 
 configure :build do
+  # Common configuration
   activate :gzip
   activate :minify_css
   activate :minify_javascript
-  activate :asset_host
   activate :asset_hash
-  activate :directory_indexes
 
   # Relative URLs ../etc
   # activate :relative_assets
@@ -148,18 +147,34 @@ configure :build do
     image_optim.image_extensions = ['*.png', '*.jpg', '*.gif']
   end
 
-  # activate :s3_sync do |s3_sync|
-  #   s3_sync.bucket                = ENV['S3_BUCKET']
-  #   s3_sync.region                = ENV['S3_REGION']
-  #   s3_sync.aws_access_key_id     = ENV['AWS_ACCESS_KEY']
-  #   s3_sync.aws_secret_access_key = ENV['AWS_SECRET_KEY']
-  #   s3_sync.prefer_gzip           = true
-  #   s3_sync.delete                = true
-  #   s3_sync.after_build           = true
-  # end
+    # Production config
+  # S3 + CloudFront distribution
+  # TARGET=production rake build
+  if ENV["TARGET"] == "production"
+    activate :asset_host
+    set :asset_host, site.cdn_url
 
-  # default_caching_policy max_age: 31449600, public: true
-  # caching_policy 'text/html', max_age: 7200, must_revalidate: true
-  # caching_policy 'text/css', max_age: 31449600, public: true
-  # caching_policy 'application/javascript', max_age: 31449600, public: true
+    activate :s3_redirect do |s3_redirect|
+      s3_redirect.bucket                = ENV['S3_BUCKET']
+      s3_redirect.region                = ENV['S3_REGION']
+      s3_redirect.aws_access_key_id     = ENV['AWS_ACCESS_KEY']
+      s3_redirect.aws_secret_access_key = ENV['AWS_SECRET_KEY']
+      s3_redirect.after_build           = true
+    end
+
+    activate :s3_sync do |s3_sync|
+      s3_sync.bucket                = ENV['S3_BUCKET']
+      s3_sync.region                = ENV['S3_REGION']
+      s3_sync.aws_access_key_id     = ENV['AWS_ACCESS_KEY']
+      s3_sync.aws_secret_access_key = ENV['AWS_SECRET_KEY']
+      s3_sync.prefer_gzip           = true
+      s3_sync.delete                = true
+      s3_sync.after_build           = true
+    end
+
+    default_caching_policy max_age: 31449600, public: true
+    caching_policy 'text/html', max_age: 7200, must_revalidate: true
+    caching_policy 'text/css', max_age: 31449600, public: true
+    caching_policy 'application/javascript', max_age: 31449600, public: true
+  end
 end

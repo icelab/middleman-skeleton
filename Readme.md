@@ -1,127 +1,128 @@
-# Middleman Skeleton
+# Icelab’s middleman skeleton
 
-A starter skeleton for [Middleman](http://middlemanapp.com) projects. It’s worth spending a little bit of time reading the [Middleman docs](http://middlemanapp.com/basics/getting-started/) to get a bit of an understanding of what Middleman is supposed to do.
+This is an opinionated starter skeleton for [Middleman][middleman] projects at [Icelab](http://icelab.com.au/), but you might find it useful too!
 
-## Running the app
+It uses:
 
-Setup:
+* [middleman][middleman] as the core static-site generator
+* [webpack][webpack] for building/bundling assets
+* [slim][slim] and [jbuilder][jbuilder] for templating
 
-    cp .env{.example,}
-    bundle install
+[slim]: http://slim-lang.com/
+[jbuilder]: https://github.com/rails/jbuilder
 
-Running locally:
+## Installation
 
-    rake watch
+Create an app from this skeleton using [Raygun](https://github.com/carbonfive/raygun):
 
-Will spin up the server at <http://localhost:4567>
+```
+gem install raygun
+raygun -p icelab/middleman-skeleton your_app_name
+```
 
-## Features
+Then delete this top section of the README.md and fill in the section below with details specific to your app.
 
-### Settings
+# AppPrototype
 
-Public settings — settings that should be exposed to the public templates — are contained in `site.yaml`. This is exposed to all templates as `site`.
+Built with [Middleman][middleman].
 
-Private settings — things like deployment passwords and the like — should be kept in `.env`. These should be available everywhere through the `ENV` variable.
+## Development
 
-### Assets
+### First-time setup
 
-The Rails asset-pipeline — Sprockets — is included out-of-the-box in Middleman.
-This means we can use most, if not all, the niceties we’re used to using in
-Rails.
+Set up the app:
 
-* Sass
-* CoffeeScript
-* Sprockets’ `require` and `stub` directives
+```
+./bin/setup
+```
 
-The Gemfile is also pre-configured to allow you to use [Bower](http://bower.io/)
-packages through [rails-assets.org](http://rails-assets.org/). If there’s a
-Bower package for a third-party bit of JavaScript you want to use, then
-rails-assets is our preferred method of including that code.
+### Running the app
 
-Bundled rails-assets packages are automatically included in the asset pipeline
-lookup, so most of the time you’ll be able to simply do something like
-`//= require jquery` to include them. Note: you might have to `bundle open` the
-specific rails-asset gem to check the exact location of the assets you want to
-include.
+Spin up Middleman’s development server:
 
-If you want to include [our CSS pattern library](https://bitbucket.org/icelab/css-patterns),
-just run:
+```
+bundle exec rake watch
+```
 
-    rake assets:fetch_patterns
+It should be accessible at `http://localhost:4567`
 
-This will clone it into `./source/assets/stylesheets/patterns` and remove the
-`.git` directory from that repo (so you can commit them alongside the rest of
-your code). If you want to update to the latest you’ll need to delete the folder
-and run that task again.
+## Build
 
-### Templates
+To build out all files locally:
 
-Templates are set up to use [Slim](http://slim-lang.com/) by default. You can
-use `filename.html.slim` in the same way you’d expect in Rails (with the
-exception of `/layouts`).
-
-You can also use `.erb` if you have a particular need to.
-
-### Content
-
-In general Middleman maps files and folders in `/source` folder to URLs:
-
-    /source/about/index.html.markdown -> /about/
-    /source/about/contact-us.html.slim -> /about/contact-us/
-
-As you can see those files can be either slim templates, or they can be
-markdown if you have general content files to deal with.
-
-### Data
-
-You can make data available in your templates by adding YAML files to the
-`/data` directory. For example, any data in `/data/example.yml` will be
-available in templates under `data.example`.
-
-### JSON
-
-If you want to play around with JSON data, there’s support for it through
-jbuilder. See `/source/index.json.jbuilder` for an example.
-
-### React
-
-Support for pre-processing React's JSX templates in `.js.jsx.coffee` and
-`.js.jsx` files is included by default. Remember sure to include the
-`###* @jsx React.DOM ###` (CoffeeScript) or  `/** @jsx React.DOM */` (JS)
-comments at the beginning of the files.
-
-To remove this support:
-
-1. Remove "middleman-react" from the `Gemfile`.
-2. Remove `activate :react` from `config.rb`.
-
-### Testing
-
-Out of the box the skeleton is set up for testing your JavaScript using
-[Jasmine](http://jasmine.github.io/), it uses the
-[`middleman-jasmine`](https://github.com/mrship/middleman-jasmine) gem.
-
-There are some dummy spec files under `/spec`. If you add any `spec.js` files
-to `/spec/` and Jasmine will automatically run the tests using livereload at
-<http://localhost:4567/jasmine/>. You’ll need to restart Middleman after you
-add new spec files.
-
-Spec files are in the sprockets load path, so you can simply `//= require foo`
-any specific files you need to test. At the moment specs have to be written
-in JavaScript.
-
-To remove this support:
-
-1. Remove "middleman-jasmine" from the `Gemfile`.
-2. Remove `activate :jasmine` from `config.rb`.
-
+```
+bundle exec rake build
+```
 
 ## Deployment
 
-The default configuration means you can `git push` to deploy to Heroku, though this should only be used for staging purposes. Each push will rebuild the entire site and serve it statically from Heroku.
+The [`middleman-deploy`][middleman-deploy] and [`middleman-s3_sync`][[middleman-s3_sync] gems are included to make it easy to deploy to either GitHub Pages or Amazon S3.
 
-Our preferred approach for deployment is to push to S3 and then CloudFront. There’s a build task set up to support this, you’ll just need to make sure the credentials in you `.env` are set up and then you can:
+Check the deployment section at the bottom of `config.rb` to see their example configurations.
 
-        TARGET=production rake build
+### Heroku
 
-Modifications to the `production` task can be made in the conditional block at the end of the `./config.rb`.
+You’ll need to adjust a few settings when you set things up:
+
+```
+heroku buildpacks:add heroku/nodejs
+heroku buildpacks:add heroku/ruby
+```
+
+Include devDependencies in the production build:
+
+```
+heroku config:set NPM_CONFIG_PRODUCTION=false
+```
+
+Then configure the production timezone on Heroku:
+
+```
+heroku config:set TZ="Australia/Melbourne"
+```
+
+Once that’s done you can also push this repository to Heroku and it should build it on deploy, and serve it automatically.
+
+## Assets
+
+Assets are built/bundled using [webpack][webpack] and are built into the final static build using Middleman’s `external_pipeline` feature.
+
+You can install and require [npm][npm] dependencies throughout your JavaScript and CSS:
+
+```
+npm install --save viewloader
+```
+
+```js
+var viewloader = require('viewloader')
+```
+
+The assets work in a similar fashion to our webpack setup in [our other][dry-web-skeleton] [app skeleton][rails-skeleton] projects. An asset will be built for each "target" under `source/assets/`:
+
+```
+source/
+|-- assets/
+    |-- public/
+    |   |-- target.js
+    |   |-- index.css*
+    |   |-- index.js*
+    |-- another-target/
+        |-- target.js
+        |-- index.js*
+```
+
+Each target must include a `target.js` file, but doesn’t _have_ to build out both CSS and JavaScript. The structure above would generate:
+
+```
+assets/public.js
+assets/public.css
+assets/another-target.js
+```
+
+[middleman]: https://middlemanapp.com/
+[webpack]: https://webpack.github.io/
+[middleman-deploy]: https://github.com/middleman-contrib/middleman-deploy
+[middleman-s3_sync]: https://github.com/fredjean/middleman-s3_sync
+[npm]: http://npmjs.com/
+[dry-web-skeleton]: https://github.com/icelab/dry-web-skeleton
+[rails-skeleton]: https://github.com/icelab/rails-skeleton

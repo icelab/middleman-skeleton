@@ -1,4 +1,5 @@
 require "redcarpet"
+
 module Redcarpet
   module Render
     class HTMLWithoutBlockElements < HTML

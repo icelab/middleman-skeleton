@@ -56,7 +56,7 @@ bundle exec rake build
 
 ## Deployment
 
-The [`middleman-deploy`][middleman-deploy] and [`middleman-s3_sync`][[middleman-s3_sync] gems are included to make it easy to deploy to either GitHub Pages or Amazon S3.
+The [`middleman-deploy`][middleman-deploy] and [`middleman-s3_sync`][middleman-s3_sync] gems are included to make it easy to deploy to either GitHub Pages or Amazon S3.
 
 Check the deployment section at the bottom of `config.rb` to see their example configurations.
 

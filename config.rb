@@ -16,6 +16,11 @@ set :markdown,        fenced_code_blocks: true,
                       lax_spacing: true,
                       with_toc_data: true
 
+# Set asset directories to nothing
+config[:js_dir] = ''
+config[:css_dir] = ''
+config[:images_dir] = ''
+
 # Helpers ----------------------------------------------------------------------
 
 require "lib/typography_helpers"

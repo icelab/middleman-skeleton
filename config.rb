@@ -75,9 +75,6 @@ page "*", layout: "layouts/base"
 
 # Webpack configuration --------------------------------------------------------
 
-ignore "assets/**/*.css"
-ignore "assets/**/*.js"
-
 activate :external_pipeline,
          name: :webpack,
          command: build? ? "npm run build" : "npm run watch",
@@ -88,6 +85,7 @@ activate :external_pipeline,
 # General configuration --------------------------------------------------------
 
 activate :directory_indexes
+activate :asset_hash
 
 # Reload the browser automatically whenever files change
 configure :development do
@@ -95,6 +93,9 @@ configure :development do
 end
 
 # Build-specific configuration -------------------------------------------------
+
+ignore "assets/**/*.css"
+ignore "assets/**/*.js"
 
 configure :build do
 end

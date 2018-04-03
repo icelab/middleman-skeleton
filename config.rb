@@ -2,6 +2,9 @@ require 'slim'
 
 # General configuration --------------------------------------------------------
 
+# We use single quotes for HTML attributes so that viewloader can be parsed.
+Slim::Engine.set_options attr_quote: "'"
+
 activate :dotenv
 
 # Set Markdown engine to use redcarpet

@@ -29,6 +29,8 @@ GEM
     concurrent-ruby (1.0.5)
     contracts (0.13.0)
     dotenv (2.2.0)
+    down (4.7.0)
+      addressable (~> 2.5)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -175,6 +177,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  down (~> 4.5)
   middleman
   middleman-deploy!
   middleman-dotenv
@@ -187,7 +190,7 @@ DEPENDENCIES
   tilt-jbuilder
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.4.0p0
 
 BUNDLED WITH
-   1.14.3
+   1.17.1

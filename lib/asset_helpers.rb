@@ -1,36 +1,48 @@
 module AssetHelpers
-  def render_asset(path)
-    # Remove leading slash
-    path = normalise_path(path)
 
-    # Infer whether `activate :asset_hash` is active matching against a hash
-    # with a format like foo-bar-b785915a.js
-    path_components = path.split("-")
-    asset_hash_active = if path_components.length == 0
-      false
-    elsif path_components.last.length === 8 && path_components.last =~ /(?:[0-9]+[a-z]|[a-z]+[0-9])/
-      true
+  def webpack_asset_path(asset)
+    if precompiled
+      asset_path_from_manifest(asset)
     else
-      false
+      asset_path_on_server(asset)
     end
+  end
 
-    if asset_hash_active
-      path = path_components[0...-1].join("-")
-      sitemap.resources.find {|r|
-        # Remove the extension
-        normalise_path(r.path) == path
-      }.render
+  def render_webpack_asset(asset)
+    if precompiled
+      File.read(
+        "#{build_path}#{asset_path_from_manifest(asset)}"
+      )
     else
-      path = path_components.join("-")
-      sitemap.resources.find {|r|
-        normalise_path(r.path) == path
-      }.render
+      Down.open(asset_path_on_server(asset)).read
     end
   end
 
   private
 
-  def normalise_path(path)
-    File.join(File.dirname(path), File.basename(path, File.extname(path))).gsub(/^\//, "")
+  def precompiled
+    build?
+  end
+
+  def asset_path_from_manifest(asset)
+    if (hashed_asset = manifest[asset])
+      "/assets/#{hashed_asset}"
+    end
+  end
+
+  def asset_path_on_server(asset)
+    "http://localhost:8080/assets/#{asset}"
+  end
+
+  def manifest
+    @manifest ||= YAML.load_file(manifest_path)
+  end
+
+  def build_path
+    ".tmp/dist"
+  end
+
+  def manifest_path
+    "#{build_path}/assets/asset-manifest.json"
   end
 end

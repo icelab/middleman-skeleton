@@ -7,7 +7,7 @@ APP_ROOT = File.expand_path("../../",  __FILE__)
 Dir.chdir(APP_ROOT) do
   puts "== Installing dependencies =="
   system "bundle"
-  system "npm install"
+  system "yarn install"
 
   puts "== Initializing config =="
   FileUtils.cp ".env.example", ".env" unless File.exist?(".env")

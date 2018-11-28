@@ -94,7 +94,7 @@ npm install --save viewloader
 ```
 
 ```js
-var viewloader = require('viewloader')
+import viewloader from "viewloader"
 ```
 
 The assets work in a similar fashion to our webpack setup in [our other][dry-web-skeleton] [app skeleton][rails-skeleton] projects. An asset will be built for each "target" under `source/assets/`:
@@ -103,20 +103,28 @@ The assets work in a similar fashion to our webpack setup in [our other][dry-web
 source/
 |-- assets/
     |-- public/
-    |   |-- target.js
+    |   |-- entry.js
     |   |-- index.css*
     |   |-- index.js*
     |-- another-target/
-        |-- target.js
+        |-- entry.js
         |-- index.js*
 ```
 
-Each target must include a `target.js` file, but doesn’t _have_ to build out both CSS and JavaScript. The structure above would generate:
+Each target must include a `entry.js` file, but doesn’t _have_ to build out both CSS and JavaScript. The structure above would generate:
 
 ```
 assets/public.js
 assets/public.css
 assets/another-target.js
+```
+
+### Inlining assets
+
+Assets can be inlined using the `render_webpack_asset` helper:
+
+```
+= render_webpack_asset("assets__public.js")
 ```
 
 [middleman]: https://middlemanapp.com/

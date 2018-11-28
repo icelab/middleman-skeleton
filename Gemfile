@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.0"
+ruby "2.4.0"
 
 # Middleman
 gem "middleman"
@@ -14,6 +14,7 @@ gem "middleman-s3_sync"
 
 # Utils
 gem "rake"
+gem "down", "~> 4.5"
 
 # Formats
 gem "redcarpet"

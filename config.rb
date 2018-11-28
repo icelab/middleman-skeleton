@@ -79,8 +79,8 @@ page "*", layout: "layouts/base"
 # Webpack configuration --------------------------------------------------------
 
 activate :external_pipeline,
-         name: :webpack,
-         command: build? ? "npm run build" : "npm run watch",
+         name: "icelab-assets",
+         command: build? ? "yarn run build" : "yarn run start",
          source: ".tmp/dist",
          latency: 1
 

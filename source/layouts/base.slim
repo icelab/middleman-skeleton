@@ -6,7 +6,7 @@ html lang="en-au"
       => current_page.data.title
       ' —
       = data.site.name
-    link rel="stylesheet" type="text/css" href=asset_path(:css, "assets/public")
-    script async=true src=asset_path(:js, "assets/public")
+    link rel="stylesheet" type="text/css" href=webpack_asset_path("assets__public.css")
+    script async=true src=webpack_asset_path("assets__public.js")
   body
     = yield

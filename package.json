@@ -1,10 +1,7 @@
 {
   "name": "middleman-skeleton",
   "private": true,
-  "dependencies": {
-    "lodash.assigninwith": "^4.2.0",
-    "lodash.partialright": "^4.2.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "icelab-assets": "^2.0.3"
   },
